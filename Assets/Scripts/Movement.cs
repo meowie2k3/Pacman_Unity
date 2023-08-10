@@ -26,7 +26,6 @@ public class Movement : MonoBehaviour
 
     private void Start(){
         init();
-        
     }
     public void init(){
         this.speedMultiplier = 1.0f;
@@ -41,7 +40,7 @@ public class Movement : MonoBehaviour
         //Time.deltaTime;
         //continuosly try to set the direction if some direction is queued up
         if(this.nextDirection != Vector2.zero){
-            setDirection(this.nextDirection, true);
+            setDirection(this.nextDirection);
         }
     }
 
@@ -55,8 +54,7 @@ public class Movement : MonoBehaviour
     }
 
     public void setDirection(Vector2 direction, bool forced = false){
-
-        if(forced || !isBlock(direction)){
+        if(forced || !isBlocked(direction)){
             //if the direction is not blocked, set the direction
             this.nextDirection = direction;
             this.nextDirection = Vector2.zero;
@@ -67,8 +65,9 @@ public class Movement : MonoBehaviour
         }
     }
 
-    public bool isBlock(Vector2 direction)
+    public bool isBlocked(Vector2 direction)
     {
+        //print("Occupied");
         // box cast instead of raycast
         //transform.position is the center of the box so we go half the size over in each direction
         RaycastHit2D hit = Physics2D.BoxCast(this.transform.position, Vector2.one * 0.9f, 0.0f, direction, 1.5f, this.obstacleLayer);
