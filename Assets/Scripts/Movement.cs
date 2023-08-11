@@ -54,13 +54,17 @@ public class Movement : MonoBehaviour
     }
 
     public void setDirection(Vector2 direction, bool forced = false){
-        if(forced || !isBlocked(direction)){
+        if(forced || !isBlocked(direction))
+        {
             //if the direction is not blocked, set the direction
-            this.nextDirection = direction;
+            //print("not blocked");
+            this.direction = direction;
             this.nextDirection = Vector2.zero;
         }
-        else {
+        else 
+        {
             //if the direction is blocked, queue up the direction
+            //print("blocked");
             this.nextDirection = direction;
         }
     }
@@ -70,7 +74,8 @@ public class Movement : MonoBehaviour
         //print("Occupied");
         // box cast instead of raycast
         //transform.position is the center of the box so we go half the size over in each direction
-        RaycastHit2D hit = Physics2D.BoxCast(this.transform.position, Vector2.one * 0.9f, 0.0f, direction, 1.5f, this.obstacleLayer);
+        RaycastHit2D hit = Physics2D.BoxCast(this.transform.position, 
+        Vector2.one * 0.75f, 0.0f, direction, 1.5f, this.obstacleLayer);
         // hit.collider is null if nothing was hit
         // hit.collider is not null if something was hit
         return hit.collider != null;
