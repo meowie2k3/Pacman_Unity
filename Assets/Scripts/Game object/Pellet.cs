@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class Pellet : MonoBehaviour
 {
-    private int point = 10;
+    public int points = 10;
 
     //virtual means overrideable
     protected virtual void Eat(){
-        this.gameObject.SetActive(false);
-
+        //this.gameObject.SetActive(false);
+        FindObjectOfType<GameManager>().pelletEaten(this);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
