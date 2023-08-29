@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
         // turn on all ghosts
         for(int i=0; i<ghosts.Length; i++)
         {
-            this.ghosts[i].gameObject.SetActive(true);
+            this.ghosts[i].reset();
         }
 
         // turn on pacman

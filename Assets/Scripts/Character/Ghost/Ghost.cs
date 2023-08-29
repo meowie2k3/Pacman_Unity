@@ -25,4 +25,14 @@ public class Ghost : MonoBehaviour
         this.frightened = GetComponent<Frightened>();
         this.home = GetComponent<Home>();
     }
+
+    private void Start(){
+        reset();
+    }
+
+    public void reset(){
+        this.gameObject.SetActive(true);
+        this.movement.init();
+
+    }
 }
